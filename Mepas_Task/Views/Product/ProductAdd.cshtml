@@ -1,0 +1,43 @@
+﻿@model Products
+
+<form asp-controller="Product" asp-action="ProductUpdate" method="post">
+    
+    <div class="form-group mt-2">
+        <label>Ürün Adı</label>
+        <input type="text" class="form-control" asp-for="Name" >
+    </div>
+    <div class="form-group mt-2">
+        <label>Kategori</label>
+        <input type="text" class="form-control" asp-for="Category_Id" >
+    </div>
+    <div class="form-group mt-2">
+        <label>Fiyat</label>
+        <input type="number" class="form-control" asp-for="Price" />
+    </div>
+    <div class="form-group mt-2">
+        <label>Birim</label>
+        <input type="text" class="form-control" asp-for="Unit" >
+    </div>
+    <div class="form-group mt-2">
+        <label>Stok</label>
+        <input type="text" class="form-control" asp-for="Stock" >
+    </div>
+    <div class="form-group mt-2">
+        <label>Renk</label>
+        <input type="text" class="form-control" asp-for="Color" >
+    </div>
+    <div class="form-group mt-2">
+        <label>Ağırlık</label>
+        <input type="text" class="form-control" asp-for="Weight" >
+    </div>
+    <div class="form-group mt-2">
+        <label>Yükseklik</label>
+        <input type="text" class="form-control" asp-for="Height" >
+    </div>
+    <div class="form-group mt-2">
+        <label>Genişlik</label>
+        <input type="text" class="form-control" asp-for="Width" >
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Ekle</button>
+</form>

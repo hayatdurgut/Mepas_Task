@@ -1,0 +1,46 @@
+﻿@model Products
+
+<form asp-controller="Product" asp-action="ProductUpdate" method="post">
+    <div class="form-group mt-2">
+        <label >Ürün Id</label>
+        <input type="text" class="form-control" asp-for="Id" value="@Model.Id" readonly>
+    </div>
+    <div class="form-group mt-2">
+        <label>Ürün Adı</label>
+        <input type="text" class="form-control" asp-for="Name" value="@Model.Name">
+    </div>
+    <div class="form-group mt-2">
+        <label>Kategori</label>
+        <input type="text" class="form-control" asp-for="Category_Id" value="@Model.Category_Id">
+    </div>
+    <div class="form-group mt-2">
+        <label>Fiyat</label>
+        <input type="text" class="form-control" asp-for="Price" value="@Model.Price">
+    </div>
+    <div class="form-group mt-2">
+        <label>Birim</label>
+        <input type="text" class="form-control" asp-for="Unit" value="@Model.Unit">
+    </div>
+    <div class="form-group mt-2">
+        <label>Stok</label>
+        <input type="text" class="form-control" asp-for="Stock" value="@Model.Stock">
+    </div>
+    <div class="form-group mt-2">
+        <label>Renk</label>
+        <input type="text" class="form-control" asp-for="Color" value="@Model.Color">
+    </div>
+    <div class="form-group mt-2">
+        <label>Ağırlık</label>
+        <input type="text" class="form-control" asp-for="Weight" value="@Model.Weight">
+    </div>
+    <div class="form-group mt-2">
+        <label>Yükseklik</label>
+        <input type="text" class="form-control" asp-for="Height" value="@Model.Height">
+    </div>
+    <div class="form-group mt-2">
+        <label>Genişlik</label>
+        <input type="text" class="form-control" asp-for="Width" value="@Model.Width">
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+</form>

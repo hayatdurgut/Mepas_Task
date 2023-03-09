@@ -1,0 +1,48 @@
+﻿@model List<Products>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Adı</th>
+            <th scope="col">Category Id</th>
+            <th scope="col">Fiyat</th>
+            <th scope="col">Birim</th>
+            <th scope="col">Stok</th>
+            <th scope="col">Renk</th>
+            <th scope="col">Ağırlık</th>
+            <th scope="col">Yükseklik</th>
+            <th scope="col">Genişlik</th>
+            <th scope="col">Ekleyen Kullanıcı Id</th>
+            <th scope="col">Güncelleyen Kullanıcı Id</th>
+            <th scope="col">Eklenme Tarihi</th>
+            <th scope="col">Güncellenme Tarihi</th>
+            <th scope="col">Düzenle</th>
+            <th scope="col">Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Category_Id</td>
+                <td>@item.Price</td>
+                <td>@item.Unit</td>
+                <td>@item.Stock</td>
+                <td>@item.Color</td>
+                <td>@item.Weight</td>
+                <td>@item.Height</td>
+                <td>@item.Width</td>
+                <td>@item.Added_User_Id</td>
+                <td>@item.Update_User_Id</td>
+                <td>@item.Created_Date.ToShortDateString()</td>
+                <td>@item.Updated_Date.ToShortDateString()</td>
+                <td> <a class="btn btn-primary" asp-controller="Product" asp-action="ProductUpdate" asp-route-id="@item.Id">Düzenle</a>  </td>
+                <td> <button class="btn btn-danger"> Sil</button>  </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
