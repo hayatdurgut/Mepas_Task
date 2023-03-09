@@ -35,8 +35,10 @@ namespace Mepas_Task.Controllers
         public IActionResult ProductAdd(Products product)
         {
 
-
-            return RedirectToAction("Index");
+                _excelRepository.AddProduct(product);
+                return RedirectToAction("Index");
+            
+           
         }
 
         [HttpGet]

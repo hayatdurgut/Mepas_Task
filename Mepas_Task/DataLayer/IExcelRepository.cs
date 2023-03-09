@@ -8,6 +8,9 @@ namespace Mepas_Task.DataLayer
        
         public List<Products> GetProducts();
         public List<Categories> GetCategories();
-        
+
+        public List<Users> GetUsers();
+
+        public void AddProduct(Products products);
     }
 }

@@ -1,0 +1,285 @@
+﻿@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <style>
+        body {
+            background: #222D32;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .login-box {
+            margin-top: 75px;
+            height: auto;
+            background: #1A2226;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        .login-key {
+            height: 100px;
+            font-size: 80px;
+            line-height: 100px;
+            background: -webkit-linear-gradient(#27EF9F, #0DB8DE);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login-title {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 30px;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #ECF0F5;
+        }
+
+        .login-form {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        input[type=text] {
+            background-color: #1A2226;
+            border: none;
+            border-bottom: 2px solid #0DB8DE;
+            border-top: 0px;
+            border-radius: 0px;
+            font-weight: bold;
+            outline: 0;
+            margin-bottom: 20px;
+            padding-left: 0px;
+            color: #ECF0F5;
+        }
+
+        input[type=password] {
+            background-color: #1A2226;
+            border: none;
+            border-bottom: 2px solid #0DB8DE;
+            border-top: 0px;
+            border-radius: 0px;
+            font-weight: bold;
+            outline: 0;
+            padding-left: 0px;
+            margin-bottom: 20px;
+            color: #ECF0F5;
+        }
+
+        .form-group {
+            margin-bottom: 40px;
+            outline: 0px;
+        }
+
+        .form-control:focus {
+            border-color: inherit;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-bottom: 2px solid #0DB8DE;
+            outline: 0;
+            background-color: #1A2226;
+            color: #ECF0F5;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0;
+        }
+
+        label {
+            margin-bottom: 0px;
+        }
+
+        .form-control-label {
+            font-size: 10px;
+            color: #6C6C6C;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .btn-outline-primary {
+            border-color: #0DB8DE;
+            color: #0DB8DE;
+            border-radius: 0px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 1px 3px #fcfcfc, 0 1px 2px #eddddd;
+        }
+
+            .btn-outline-primary:hover {
+                background-color: #0DB8DE;
+                right: 0px;
+            }
+
+        .login-btm {
+            float: left;
+        }
+
+        .login-button {
+            padding-right: 0px;
+            text-align: right;
+            margin-bottom: 25px;
+        }
+
+        .login-text {
+            text-align: left;
+            padding-left: 0px;
+            color: black;
+        }
+
+        .loginbttm {
+            padding: 0px;
+        }
+    </style>
+</head>
+<bod>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-2"></div>
+            <div class="col-lg-6 col-md-8 login-box">
+                <div class="col-lg-12 login-key">
+                    <i class="fa fa-key" aria-hidden="true"></i>
+                </div>
+                <div class="col-lg-12 login-title">
+                    Login
+                </div>
+
+                <div class="col-lg-12 login-form">
+                    <div class="col-lg-12 login-form">
+                        <form>
+                            <div class="form-group">
+                                <label class="form-control-label" >Kullanıcı Adı</label>
+                                <input type="text" id="username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">Şifre</label>
+                                <input type="password" id="password" class="form-control">
+                            </div>
+
+                            <div class="col-lg-12 loginbttm">
+                                @*  <div class="col-lg-6 login-btm login-text">
+                                <!-- Error Message -->
+                                </div>*@
+                                <div class="col-lg-6 login-btm login-button">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <button onclick="showExample()" class="btn btn-outline-primary">Giriş</button>
+
+                <div class="col-lg-3 col-md-2"></div>
+            </div>
+        </div>
+        <script type="text/javascript">
+
+           
+
+
+            function showExample() {
+                let timerInterval;
+
+                var username = $('#username').val();
+                var password = $('#password').val();
+               
+
+                $.ajax({
+                    url: '/Login/UserControl',
+                    type: 'POST',
+                    data: { username: username, password: password },
+                    dataType: "json",
+                    success: function (result) {
+                       
+                        if (result) {
+                            Swal.fire({
+                                title: 'Onay Kodunu Giriniz!',
+                                html:
+                                    'Kalan Süre <strong></strong> saniye.<br/><br/>' +
+                                    ' <input type="text" id="txtApproval" class="form-control"/>' +
+                                    '<button id="approval" class="btn btn-dark">' +
+                                    'Onayla' +
+                                    '</button>'
+                                ,
+                                timer: 100000,
+                                didOpen: () => {
+                                    const content = Swal.getHtmlContainer()
+                                    const $ = content.querySelector.bind(content)
+
+                                    const approval = $('#approval')
+                                   
+                                   
+
+                                    Swal.showLoading()
+                                   
+                                    approval.addEventListener('click', () => {
+                                        
+                                        const txtApproval =document.getElementById("txtApproval").value
+
+                                        for (let i = 0; i < 3; i++) {
+                                            ApprovalCheck(txtApproval,3-i)
+                                        }
+
+                                      
+                                    })
+
+                                    timerInterval = setInterval(() => {
+                                        Swal.getHtmlContainer().querySelector('strong')
+                                            .textContent = (Swal.getTimerLeft() / 1000)
+                                                .toFixed(0)
+                                    }, 100)
+                                },
+                                willClose: () => {
+                                    clearInterval(timerInterval)
+                                }
+                            })
+                        }
+                        else {
+                           alert("Kişi Mevcut değil.")
+                        }
+                    },
+                    
+                });
+
+
+               
+
+              
+            }
+
+            function ApprovalCheck(txtApproval, size) {
+                if(size>0){
+                    $.ajax({
+                        url: '/Login/CheckApprove',
+                        type: 'POST',
+                        data: { approvalCode: txtApproval },
+                        dataType: "json",
+                        success: function (result) {
+                            if (result) {
+                                location.reload();
+                                        }
+                            else{
+                                alert("Tekrar deneyin");
+                            }
+                        }
+
+                    });
+                }
+                else{
+                    alert("deneme hakkınız kalmadı.")
+                }
+              
+            }
+
+
+        </script>
