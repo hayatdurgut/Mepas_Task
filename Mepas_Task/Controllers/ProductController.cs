@@ -1,11 +1,13 @@
 ﻿using Mepas_Task.DataLayer;
 using Mepas_Task.Models;
 using Mepas_Task.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mepas_Task.Controllers
 {
-    public class ProductController : Controller
+    [Authorize]
+    public class ProductController : BaseController
     {
         private readonly ILogger<ProductController> _logger;
 
@@ -18,29 +20,31 @@ namespace Mepas_Task.Controllers
            
         }
 
-
+        
         public IActionResult Index()
         {
             
             return View();
         }
 
+
+        //Ürün ekleme sayfası açılır.
         [HttpGet]
         public IActionResult ProductAdd()
         {
             return View();
         }
 
+        //Ürün ekleme işlemi gerçekleştirilir.
         [HttpPost]
         public IActionResult ProductAdd(Products product)
         {
-
                 _excelRepository.AddProduct(product);
                 return RedirectToAction("Index");
-            
-           
         }
 
+
+        // Ürün güncelleme sayfası açılır. Ürün bilgileri ilgili girdi alanlarına yerleştirilir.
         [HttpGet]
         public IActionResult ProductUpdate(int id)
         {
@@ -48,11 +52,13 @@ namespace Mepas_Task.Controllers
             
             return View(product);
         }
+
+
+
+        //Güncelleme işlemini gerçekleştirecek fonksiyon.
         [HttpPost]
         public IActionResult ProductUpdate(Products product)
         {
-           
-
             return RedirectToAction("Index");
         }
     }

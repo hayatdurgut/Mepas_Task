@@ -217,11 +217,7 @@
                                     const $ = content.querySelector.bind(content)
 
                                     const approval = $('#approval')
-                                   
-                                   
-
                                     Swal.showLoading()
-                                   
                                     approval.addEventListener('click', () => {
                                         
                                         const txtApproval =document.getElementById("txtApproval").value
@@ -229,8 +225,6 @@
                                         for (let i = 0; i < 3; i++) {
                                             ApprovalCheck(txtApproval,3-i)
                                         }
-
-                                      
                                     })
 
                                     timerInterval = setInterval(() => {
@@ -245,16 +239,11 @@
                             })
                         }
                         else {
-                           alert("Kişi Mevcut değil.")
+                           alert("Kullanıcı adı şifre yanlış.")
                         }
                     },
                     
                 });
-
-
-               
-
-              
             }
 
             function ApprovalCheck(txtApproval, size) {
@@ -266,10 +255,10 @@
                         dataType: "json",
                         success: function (result) {
                             if (result) {
-                                location.reload();
+                                window.location.href = "../Home/Index";
                                         }
                             else{
-                                alert("Tekrar deneyin");
+                                alert(size +" hakkınız kaldı.");
                             }
                         }
 

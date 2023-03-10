@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 using Spire.Xls;
 using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Drawing;
 
 namespace Mepas_Task.Repository
 {
     public class ExcelRepository : IExcelRepository
     {
 
+        //Excel dosyasından ürünleri export eder.
         public List<Products> GetProducts()
         {
             List<Products> products = new List<Products>();
@@ -51,8 +53,8 @@ namespace Mepas_Task.Repository
             return products;
         }
 
-        
-          public List<Categories> GetCategories()
+        //Excel dosyasından kategorileri export eder.
+        public List<Categories> GetCategories()
         {
             List<Categories> categories = new List<Categories>();
 
@@ -60,11 +62,11 @@ namespace Mepas_Task.Repository
              *  AppContext.BaseDirectory: bin klasörünün dizin konumu
              *  "\\Files\\veritabani.xlsx": excel dosyasının bin klasöründeki konumu
             **/
-            string filePath = AppContext.BaseDirectory + "Files\\Veritabani.xlsx"; 
+            string filePath = AppContext.BaseDirectory + "Files\\Veritabani.xlsx";
             using (XLWorkbook workBook = new XLWorkbook(filePath)) //excel dosyasını açıyor. 
             {
                 //Exceldeki sayfaları okuyor.(2. sayfayı seçmiş)
-                IXLWorksheet workSheet = workBook.Worksheet(2); 
+                IXLWorksheet workSheet = workBook.Worksheet(2);
 
 
                 foreach (IXLRow row in workSheet.Rows())  //tüm satırları dönüyor.
@@ -79,39 +81,8 @@ namespace Mepas_Task.Repository
             return categories;
         }
 
-        public void AddProduct(Products product)
-        {
-                /**
-          *  AppContext.BaseDirectory: bin klasörünün dizin konumu
-          *  "\\Files\\veritabani.xlsx": excel dosyasının bin klasöründeki konumu
-         **/
-                string filePath = AppContext.BaseDirectory + "Files\\Veritabani.xlsx";
-                using (XLWorkbook workBook = new XLWorkbook(filePath)) //excel dosyasını açıyor. 
-                {
-                    //Exceldeki sayfaları okuyor.(1. sayfayı seçmiş)
-                    IXLWorksheet workSheet = workBook.Worksheet(1);
-                    var rowSize = GetProducts().ToList().Count;
-                    workSheet.Cell(rowSize + 1, 1).Value = rowSize + 1;
-                    workSheet.Cell(rowSize + 1, 2).Value = product.Name;
-                    workSheet.Cell(rowSize + 1, 3).Value = product.Category_Id;
-                    workSheet.Cell(rowSize + 1, 4).Value = product.Price;
-                    workSheet.Cell(rowSize + 1, 5).Value = product.Unit;
-                    workSheet.Cell(rowSize + 1, 6).Value = product.Stock;
-                    workSheet.Cell(rowSize + 1, 7).Value = product.Color;
-                    workSheet.Cell(rowSize + 1, 8).Value = product.Weight;
-                    workSheet.Cell(rowSize + 1, 9).Value = product.Height;
-                    workSheet.Cell(rowSize + 1, 10).Value = product.Width;
-                    workSheet.Cell(rowSize + 1, 11).Value = 1;// user Id
-                    workSheet.Cell(rowSize + 1, 12).Value = 1; // update user ıd
-                    workSheet.Cell(rowSize + 1, 13).Value = DateTime.Now;
-                    workSheet.Cell(rowSize + 1, 14).Value = DateTime.Now;
-                    workBook.Save();
-                }
-               
-           
 
-        }
-
+        //Excel dosyasından kullanıcıları export eder.
         public List<Models.Users> GetUsers()
         {
             List<Models.Users> users = new List<Models.Users>();
@@ -137,15 +108,64 @@ namespace Mepas_Task.Repository
                         Username = row.Cell(4).GetText(),
                         Password = row.Cell(5).GetText(),
                         Status = row.Cell(6).GetValue<bool>(),
-                    }) ;
+                    });
                 }
             }
             return users;
+        }
+
+
+        //Excel dosyasına veri import eder.
+        public void AddProduct(Products product)
+        {
+            /**
+      *  AppContext.BaseDirectory: bin klasörünün dizin konumu
+      *  "\\Files\\veritabani.xlsx": excel dosyasının bin klasöründeki konumu
+     **/
+            string filePath = AppContext.BaseDirectory + "Files\\Veritabani.xlsx";
+            using (XLWorkbook workBook = new XLWorkbook(filePath)) //excel dosyasını açıyor. 
+            {
+                //Exceldeki sayfaları okuyor.(1. sayfayı seçmiş)
+                IXLWorksheet workSheet = workBook.Worksheet(1);
+                var rowSize = GetProducts().ToList().Count;
+                workSheet.Cell(rowSize + 1, 1).Value = rowSize + 1;
+                workSheet.Cell(rowSize + 1, 2).Value = product.Name;
+                workSheet.Cell(rowSize + 1, 3).Value = product.Category_Id;
+                workSheet.Cell(rowSize + 1, 4).Value = product.Price;
+                workSheet.Cell(rowSize + 1, 5).Value = product.Unit;
+                workSheet.Cell(rowSize + 1, 6).Value = product.Stock;
+                workSheet.Cell(rowSize + 1, 7).Value = product.Color;
+                workSheet.Cell(rowSize + 1, 8).Value = product.Weight;
+                workSheet.Cell(rowSize + 1, 9).Value = product.Height;
+                workSheet.Cell(rowSize + 1, 10).Value = product.Width;
+                workSheet.Cell(rowSize + 1, 11).Value = 1;// user Id
+                workSheet.Cell(rowSize + 1, 12).Value = 1; // update user ıd
+                workSheet.Cell(rowSize + 1, 13).Value = DateTime.Now;
+                workSheet.Cell(rowSize + 1, 14).Value = DateTime.Now;
+                workBook.Save();
+            }
+
+
+
+        }
+
+
+        //Onay kodunun doğruluğunu kontrol eder.
+        public bool CheckApproval(string code)
+        {
+            if (code == "1111")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 
 
 }
 
-      
+
 
